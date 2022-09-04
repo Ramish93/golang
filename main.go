@@ -12,6 +12,9 @@ func main() {
 	fmt.Println(&remainingTickets)
 	fmt.Printf("conN is %T, remT is %T \n", conferenceName, remainingTickets)
 
+	var bookings []string
+
+
 	var firstName string
 	var lastName string
 	var email string
@@ -27,7 +30,14 @@ func main() {
 	fmt.Scan(&userTickets)
 
 	remainingTickets = remainingTickets - userTickets
+	
+	bookings = append(bookings, firstName +" "+ lastName)
+	fmt.Printf("Slice  %v \n", bookings)
+	fmt.Printf("Slice  %v \n", bookings[0])
+	fmt.Printf("Slice  %v \n", len(bookings))
+
 	fmt.Printf("userName %v %v has booked %v tickets email: %v \n", firstName, lastName, userTickets, email)
+
 	fmt.Printf("%v tickets remaining", remainingTickets)
 	
 }
