@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 var conferenceName string = "Go Conference"
@@ -15,11 +16,12 @@ type userData struct {
 	email string
 	numberOfTickets int
 }
+var wg = sync.WaitGroup{}
 
 func main() {
 	greetUsers()
 	
-	for {
+
 		firstName, lastName, email, userTickets := getUserInput()
 		isValidName, isValidEmail, isValidTicketNumber := ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
@@ -27,6 +29,7 @@ func main() {
 
 		if isValidEmail && isValidName && isValidTicketNumber{
 			bookTickets(userTickets , firstName, lastName)
+			wg.Add(1)
 			go sendTicket(userTickets , firstName, lastName, email)
 		
 			fmt.Printf("userName %v %v has booked %v tickets email: %v \n", firstName, lastName, userTickets, email)
@@ -38,7 +41,7 @@ func main() {
 			if noticks {
 				// end programme
 				fmt.Println("no more tickets")
-				break
+				// break
 			}
 		} else{
 			if !isValidName {
@@ -50,9 +53,8 @@ func main() {
 			if !isValidTicketNumber {
 				fmt.Println("invlaid ticket number is short")
 			}
-			continue
+			// continue
 		}
-	}
 	// switch statement example
 	// city := "London"
 
@@ -67,6 +69,7 @@ func main() {
 	// 		//execute this
 	// 		fmt.Println("no valid city")
 	// }
+	wg.Wait()
 }
 
 func greetUsers() {
@@ -119,9 +122,10 @@ func bookTickets( userTickets int, firstName string, lastName string){
 }
 
 func sendTicket (userTickets int, firstName string, lastName string, email string) {
-	time.Sleep(10 * time.Second)
+	time.Sleep(2 * time.Second)
 	var ticket = fmt.Sprintf("%v ticket for %v %v", userTickets, firstName, lastName)
 	fmt.Println("----------------")
 	fmt.Printf("sending ticket: %v to email %v ", ticket, email)
 	fmt.Println("----------------")
+	wg.Done()
 }
