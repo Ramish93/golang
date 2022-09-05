@@ -163,5 +163,9 @@ case string:
 case float32:
 	fmt.Println("its float32")
 }
+
+for i, j := 0,0; i < 5; i,j = i+1,j+2 {
+	fmt.Println(i, j)
+}
 }
 
