@@ -153,5 +153,15 @@ func animal () {
 	field, _:= t.FieldByName("name")
 	fmt.Println(field.Tag)
 	
+
+var i interface{} = 1
+switch i.(type){
+case int:
+	fmt.Println("its int")
+case string:
+	fmt.Println("its string")
+case float32:
+	fmt.Println("its float32")
+}
 }
 
