@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"sync"
 	"time"
 )
@@ -131,7 +132,7 @@ func sendTicket (userTickets int, firstName string, lastName string, email strin
 }
 
 type Animal struct {
-	name string
+	name string ` required max: "100`
 	origin string
 }
 type Bird struct {
@@ -147,4 +148,10 @@ func animal () {
 	b.canFly= false
 	fmt.Println(b)
 	fmt.Println(b.name)
+
+	t:= reflect.TypeOf(Animal{})
+	field, _:= t.FieldByName("name")
+	fmt.Println(field.Tag)
+	
 }
+
