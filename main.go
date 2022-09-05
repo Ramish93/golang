@@ -129,3 +129,22 @@ func sendTicket (userTickets int, firstName string, lastName string, email strin
 	fmt.Println("----------------")
 	wg.Done()
 }
+
+type Animal struct {
+	name string
+	origin string
+}
+type Bird struct {
+	Animal
+	spped float32
+	canFly bool
+}
+func animal () {
+	b:= Bird{}
+	b.name = "emu"
+	b.origin= "Aus"
+	b.spped = 48
+	b.canFly= false
+	fmt.Println(b)
+	fmt.Println(b.name)
+}
