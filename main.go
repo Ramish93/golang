@@ -191,14 +191,14 @@ func main() {
 // 		}
 // }
 
-	var w Writer= ConsoleWriter{}
-	w.Write([]byte("hello world"))
+var w Writer= ConsoleWriter{}
+w.Write([]byte("hello world"))
 }
 type Writer interface{
-	Write([]byte) (int, error)
+Write([]byte) (int, error)
 }
 type ConsoleWriter struct {}
 func(cw ConsoleWriter) Write(data []byte) (int, error) {
-	n, err := fmt.Println(string(data))
-	return n, err
+n, err := fmt.Println(string(data))
+return n, err
 }
