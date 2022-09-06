@@ -71,6 +71,16 @@ func main() {
 	// 		fmt.Println("no valid city")
 	// }
 	wg.Wait()
+	sum("the sum is", 1,2,3,4,5)
+}
+func sum(msg string, values ...int){
+	fmt.Println(values)
+	result := 0
+	for _, v := range values{
+		result += v
+
+	}
+	fmt.Println(msg, result)
 }
 
 func greetUsers() {
@@ -164,8 +174,19 @@ case float32:
 	fmt.Println("its float32")
 }
 
-for i, j := 0,0; i < 5; i,j = i+1,j+2 {
-	fmt.Println(i, j)
+k := 0
+for ; k < 5;k ++{
+	fmt.Println(k)
 }
+print(k)
+
+loop:
+	for x:= 0; x <= 5; x++ {
+		for j:= 0; j <= 3; j++ {
+			fmt.Print(i * j)
+			if i * j >= 3{
+				break loop
+			}
+		}
 }
 
